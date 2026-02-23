@@ -1,0 +1,88 @@
+/* Estilo base del botón */
+.button {
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+/* Variantes */
+.button-primary {
+    background-color: #0077cc;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 119, 204, 0.2);
+}
+
+.button-primary:hover {
+    background-color: #005fa3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 119, 204, 0.3);
+}
+
+.button-secondary {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.button-secondary:hover {
+    background-color: #e0e0e0;
+    border-color: #999;
+}
+
+.button-danger {
+    background-color: #ff5757;
+    color: white;
+    box-shadow: 0 2px 4px rgba(255, 87, 87, 0.2);
+}
+
+.button-danger:hover:not(:disabled) {
+    background-color: #e04141;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 87, 87, 0.3);
+}
+
+.button-success {
+    background-color: #28a745;
+    color: white;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+.button-success:hover:not(:disabled) {
+    background-color: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.button-small {
+    padding: 0.4em 0.8em;
+    font-size: 0.875em;
+}
+
+.button-large {
+    padding: 0.8em 1.6em;
+    font-size: 1.125em;
+}
+
+.button-outline {
+    background-color: transparent;
+    border: 2px solid currentColor;
+}
+
+.button-outline.button-primary {
+    color: #0077cc;
+    box-shadow: none;
+}
+
+.button-outline.button-danger {
+    color: #ff5757;
+    box-shadow: none;
+}

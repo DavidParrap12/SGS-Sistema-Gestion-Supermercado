@@ -1,0 +1,148 @@
+.dashboard-container {
+    min-height: 100vh;
+    background-color: #f5f6fa;
+    padding: 2rem; /* Agregado padding general */
+}
+
+.dashboard-content {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h2 {
+    text-align: center; 
+    color: #495057;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.welcome-message {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.card-content h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-list li:last-child {
+    border-bottom: none;
+}
+
+/* Estilos específicos para cada tipo de tarjeta */
+.ingresos .card-value {
+    color: #27ae60;
+}
+
+.productos .card-value {
+    color: #e74c3c;
+}
+
+.stock-bajo .stock-warning {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.ventas-recientes .sale-amount {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.promociones .promo-discount {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+.product-name, .sale-client, .promo-name {
+    color: #2c3e50;
+}
+
+.product-quantity {
+    color: #7f8c8d;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+
+.error-message {
+    color: #e74c3c;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-content {
+        padding: 1rem;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+} 
