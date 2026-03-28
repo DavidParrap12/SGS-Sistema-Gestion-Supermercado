@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar';
 import DynamicLabel from '../components/DynamicLabel';
 import { useAuth } from '../context/authContext';
 import axios from 'axios';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3005';
 import '../styles/styleInventario.css';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
@@ -51,7 +53,7 @@ function GestionInventario() {
 
     const fetchProductos = async () => {
         try {
-            const response = await axios.get('http://localhost:3005/api/productos');
+            const response = await axios.get(`${API_URL}/api/productos`);
             setProductos(response.data);
         } catch (error) {
             console.error("Error al cargar productos:", error);
@@ -86,7 +88,7 @@ function GestionInventario() {
     
         try {
             await axios.post(
-                'http://localhost:3005/api/productos',
+                `${API_URL}/api/productos`,
                 nuevoProducto,
                 { withCredentials: true }
             );
@@ -114,7 +116,7 @@ function GestionInventario() {
             try {
                 const productoActualizado = productos.find(p => p._id === id);
                 await axios.put(
-                    `http://localhost:3005/api/productos/${id}`, 
+                    `${API_URL}/api/productos/${id}`,
                     productoActualizado,
                     { withCredentials: true }
                 );
@@ -139,7 +141,7 @@ function GestionInventario() {
         if (window.confirm("¿Está seguro de eliminar este producto?")) {
             try {
                 await axios.delete(
-                    `http://localhost:3005/api/productos/${id}`,
+                    `${API_URL}/api/productos/${id}`,
                     { withCredentials: true }
                 );
                 fetchProductos();
