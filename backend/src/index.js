@@ -1,4 +1,4 @@
-// src/index.mjs
+// src/index.js
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -54,12 +54,7 @@ app.use(morgan('dev'));
 app.use(express.json({ limit: '10kb' })); // Limitar tamaño de payload (mitigar DDoS)
 app.use(cookieParser());
 
-// Verificar variables de entorno
-console.log('Environment variables:', {
-    MONGODB_URI: process.env.MONGODB_URI,
-    PORT: process.env.PORT,
-    NODE_ENV: process.env.NODE_ENV
-});
+// Verificar variables de entorno al arrancar
 
 // Conectar a MongoDB
 // MongoDB connection with options
@@ -104,26 +99,13 @@ app.use((err, req, res, next) => {
     });
 });
 
-// Al inicio de tu aplicación
+// Validar variables de entorno obligatorias
 if (!process.env.MONGODB_URI) {
-    console.error('Error: La URL de MongoDB no está definida en el archivo .env');
-    console.error('Obtén la nueva URL de Railway.com y actualiza tu archivo .env');
+    console.error('Error: La variable MONGODB_URI no está definida en el archivo .env');
     process.exit(1);
 }
 
-// Puedes añadir una validación básica de formato
 if (!process.env.MONGODB_URI.startsWith('mongodb://') && !process.env.MONGODB_URI.startsWith('mongodb+srv://')) {
-    console.error('Error: La URL de MongoDB tiene un formato incorrecto');
+    console.error('Error: La variable MONGODB_URI tiene un formato incorrecto');
     process.exit(1);
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -12,9 +12,6 @@ export const login = async (req, res) => {
     try {
         const { email, password, username } = req.body;
 
-        // Log the attempt
-        console.log('Login attempt:', { email, username });
-
         // Buscar usuario por email o username
         let userFound;
 

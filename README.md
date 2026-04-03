@@ -68,12 +68,12 @@ Extraiga el contenido del ZIP o clone el repositorio en la computadora destino.
 ## 🔑 Credenciales por Defecto (Primer Uso)
 Al arrancar el sistema con una base de datos limpia, por defecto es necesario registrar al primer usuario con privilegios de Administrador directamente desde la API o utilizando el script/endpoint de inicialización incluido en el código.
 
-*(Nota al comprador: Asegúrese de cambiar las contraseñas generadas o iniciales de inmediato en el módulo de Administración).*
+*(Nota al comprador: Asegúrese de cambiar las credenciales predeterminadas de inmediato en el módulo de Administración una vez que haya accedido al sistema).*
 
 ---
 
 ## 📄 Módulos Principales
-* **Panel de Control (Dashboard):** Visión general de ingresos, productos bajos en stock y ventas chart.
+* **Panel de Control (Dashboard):** Visión general de ingresos, productos bajos en stock y gráficas de ventas.
 * **Inventario:** CRUD completo de catálogo de productos.
 * **Ventas (TPV):** Terminal de Punto de Venta ágil para cajeros, genera tickets de venta.
 * **Reportes:** Motor de análisis de negocio con gráficas dinámicas y exportación a PDF/Excel.

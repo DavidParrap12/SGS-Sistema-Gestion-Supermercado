@@ -1,1 +1,26 @@
-node_modules
+# Dependencias
+node_modules/
+
+# Variables de entorno (contienen secretos)
+.env
+.env.local
+.env.production
+
+# Certificados SSL (NUNCA subir al repositorio)
+ssl/
+backend/ssl/
+*.pem
+*.key
+*.crt
+
+# Logs
+*.log
+npm-debug.log*
+
+# Respaldos automáticos
+backend/backups/
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.vscode/
