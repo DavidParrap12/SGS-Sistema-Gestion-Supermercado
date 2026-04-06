@@ -47,10 +47,10 @@ export const login = async (req, res) => {
         const token = await createAccessToken({ id: userFound._id });
 
         res.cookie('token', token, {
-            httpOnly: true, // No accesible desde JavaScript (protege contra XSS)
-            secure: process.env.NODE_ENV === 'production', // Solo HTTPS en producción
-            sameSite: 'strict', // Protege contra CSRF
-            maxAge: 24 * 60 * 60 * 1000 // 1 día (alineado al JWT)
+            httpOnly: true,
+            secure: true, // Siempre HTTPS (requerido para sameSite: none)
+            sameSite: 'none', // Permite cookies cross-domain (Vercel <-> Railway)
+            maxAge: 24 * 60 * 60 * 1000 // 1 día
         });
 
         res.json({
@@ -124,8 +124,8 @@ export const register = async (req, res) => {
 export const logout = (req, res) => {
     res.cookie('token', '', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        secure: true,
+        sameSite: 'none', // Cross-domain
         expires: new Date(0)
     });
     return res.sendStatus(200);
