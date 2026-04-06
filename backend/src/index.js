@@ -47,10 +47,25 @@ const apiLimiter = rateLimit({
 });
 app.use('/api', apiLimiter);
 
+const allowedOrigins = process.env.NODE_ENV === 'production'
+    ? [
+        process.env.FRONTEND_URL,
+        'https://sgs-sistema-gestion-supermercado.vercel.app',
+      ].filter(Boolean).map(o => o.replace(/\/$/, '')) // eliminar trailing slash
+    : ['http://localhost:5173', 'http://localhost:5174'];
+
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production'
-        ? [process.env.FRONTEND_URL]
-        : ['http://localhost:5173', 'http://localhost:5174'],
+    origin: (origin, callback) => {
+        // Permitir peticiones sin origin (Postman, curl, etc.)
+        if (!origin) return callback(null, true);
+        const cleanOrigin = origin.replace(/\/$/, '');
+        if (allowedOrigins.includes(cleanOrigin)) {
+            callback(null, true);
+        } else {
+            console.warn('CORS bloqueado para origin:', origin);
+            callback(new Error('No permitido por CORS'));
+        }
+    },
     credentials: true
 }));
 app.use(morgan('dev'));
