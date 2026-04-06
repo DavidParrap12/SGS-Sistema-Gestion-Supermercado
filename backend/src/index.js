@@ -29,6 +29,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3005;
 
+// Necesario para Railway/Vercel: confiar en el proxy inverso (X-Forwarded-For)
+app.set('trust proxy', 1);
+
 // Middlewares de Seguridad Básicos
 app.use(helmet()); // Configura cabeceras HTTP de seguridad
 app.use(mongoSanitize()); // Protege contra inyecciones NoSQL en req.body, req.query o req.params
