@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/authContext";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import { API } from '../api/auth';
 import "../styles/styleRegistroVentas.css";
 
 const RegistroVentas = () => {
@@ -31,7 +32,7 @@ const RegistroVentas = () => {
         }
         const fetchProductos = async () => {
             try {
-                const response = await axios.get('http://localhost:3005/api/productos');
+                const response = await axios.get(`${API}/productos`);
                 setProductosDisponibles(response.data);
             } catch (error) {
                 console.error("Error al cargar productos:", error);
@@ -149,7 +150,7 @@ const RegistroVentas = () => {
         };
 
         try {
-            await axios.post('http://localhost:3005/api/ventas', ventaData, {
+            await axios.post(`${API}/ventas`, ventaData, {
                 withCredentials: true
             });
 
@@ -177,7 +178,7 @@ const RegistroVentas = () => {
         }
 
         try {
-            const response = await axios.get(`http://localhost:3005/api/productos/codigo/${codigoBusqueda}`);
+            const response = await axios.get(`${API}/productos/codigo/${codigoBusqueda}`);
             setProductoEncontrado(response.data);
             setFormData(prev => ({
                 ...prev,

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API } from '../api/auth';
 import '../styles/PermissionManager.css';
 
 const PermissionManager = ({ user, onUpdate }) => {
@@ -54,7 +55,7 @@ const PermissionManager = ({ user, onUpdate }) => {
 
             // Actualizar en el backend
             const response = await axios.put(
-                `http://localhost:3005/api/admin/usuarios/${user._id}/permissions`,
+                `${API}/admin/usuarios/${user._id}/permissions`,
                 { permissions: updatedPermissions },
                 { withCredentials: true }
             );
@@ -85,7 +86,7 @@ const PermissionManager = ({ user, onUpdate }) => {
             
             try {
                 const response = await axios.put(
-                    `http://localhost:3005/api/admin/usuarios/${user._id}/permissions`,
+                    `${API}/admin/usuarios/${user._id}/permissions`,
                     { permissions: updatedPermissions },
                     { withCredentials: true }
                 );
@@ -111,7 +112,7 @@ const PermissionManager = ({ user, onUpdate }) => {
 
             try {
                 const response = await axios.put(
-                    `http://localhost:3005/api/admin/usuarios/${user._id}/permissions`,
+                    `${API}/admin/usuarios/${user._id}/permissions`,
                     { permissions: updatedPermissions },
                     { withCredentials: true }
                 );

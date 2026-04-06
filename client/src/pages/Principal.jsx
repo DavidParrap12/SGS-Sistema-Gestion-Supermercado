@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API } from '../api/auth';
 import Navbar from '../components/Navbar';
 import { useAuth } from '../context/authContext';
 import '../styles/stylePrincipal.css';
@@ -22,7 +23,7 @@ function Principal() {
             try {
                 setLoading(true);
                 const token = document.cookie.split('token=')[1];
-                const response = await axios.get('http://localhost:3005/api/auth/principal', {
+                const response = await axios.get(`${API}/auth/principal`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'

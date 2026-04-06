@@ -3,6 +3,7 @@ import { useAuth } from "../context/authContext";
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import { API } from '../api/auth';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -62,7 +63,7 @@ const Reportes = () => {
     useEffect(() => {
         const fetchReportData = async () => {
             try {
-                const response = await axios.get('http://localhost:3005/api/reportes', {
+                const response = await axios.get(`${API}/reportes`, {
                     withCredentials: true
                 });
                 setReportData({

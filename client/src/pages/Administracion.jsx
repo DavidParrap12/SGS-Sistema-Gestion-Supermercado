@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import PermissionManager from '../components/PermissionManager';
 import axios from 'axios';
+import { API } from '../api/auth';
 import '../styles/styleAdministracion.css';
 
 const Administracion = () => {
@@ -39,7 +40,7 @@ const Administracion = () => {
 
     const fetchStats = async () => {
         try {
-            const response = await axios.get('http://localhost:3005/api/admin/stats', {
+            const response = await axios.get(`${API}/admin/stats`, {
                 withCredentials: true
             });
             setStats(response.data);
@@ -50,7 +51,7 @@ const Administracion = () => {
 
     const fetchAuditStats = async () => {
         try {
-            const response = await axios.get('http://localhost:3005/api/audit/stats', {
+            const response = await axios.get(`${API}/audit/stats`, {
                 withCredentials: true
             });
             setStats(prev => ({
@@ -64,7 +65,7 @@ const Administracion = () => {
 
     const fetchUsuarios = async () => {
         try {
-            const response = await axios.get('http://localhost:3005/api/admin/usuarios', {
+            const response = await axios.get(`${API}/admin/usuarios`, {
                 withCredentials: true
             });
             setUsuarios(response.data);
@@ -78,7 +79,7 @@ const Administracion = () => {
     const handleEliminarUsuario = async (userId) => {
         if (window.confirm('¿Está seguro de eliminar este usuario?')) {
             try {
-                await axios.delete(`http://localhost:3005/api/admin/usuarios/${userId}`, {
+                await axios.delete(`${API}/admin/usuarios/${userId}`, {
                     withCredentials: true
                 });
                 fetchUsuarios();
@@ -92,7 +93,7 @@ const Administracion = () => {
 
     const handleCambiarRol = async (userId, nuevoRol) => {
         try {
-            await axios.put(`http://localhost:3005/api/admin/usuarios/${userId}/rol`, 
+            await axios.put(`${API}/admin/usuarios/${userId}/rol`, 
                 { role: nuevoRol },
                 { withCredentials: true }
             );
@@ -113,7 +114,7 @@ const Administracion = () => {
 
     const crearRespaldo = async () => {
         try {
-            const response = await axios.post('http://localhost:3005/api/backup/create', {}, {
+            const response = await axios.post(`${API}/backup/create`, {}, {
                 withCredentials: true
             });
             alert(`Respaldo creado exitosamente: ${response.data.backupName}`);

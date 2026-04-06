@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API } from '../api/auth';
 import Navbar from '../components/Navbar';
 import '../styles/styleAuditoria.css';
 
@@ -53,7 +54,7 @@ const Auditoria = () => {
                 ...filters
             });
 
-            const response = await axios.get(`http://localhost:3005/api/audit/logs?${queryParams}`, {
+            const response = await axios.get(`${API}/audit/logs?${queryParams}`, {
                 withCredentials: true
             });
             setAuditLogs(response.data.data || []);
@@ -73,7 +74,7 @@ const Auditoria = () => {
 
     const fetchStats = async () => {
         try {
-            const response = await axios.get('http://localhost:3005/api/audit/stats', {
+            const response = await axios.get(`${API}/audit/stats`, {
                 withCredentials: true
             });
             const data = response?.data?.data || {};
@@ -108,7 +109,7 @@ const Auditoria = () => {
 
     const exportLogs = async () => {
         try {
-            const response = await axios.get('http://localhost:3005/api/audit/export', {
+            const response = await axios.get(`${API}/audit/export`, {
                 responseType: 'blob',
                 withCredentials: true
             });
@@ -132,7 +133,7 @@ const Auditoria = () => {
         }
 
         try {
-            await axios.delete('http://localhost:3005/api/audit/cleanup', {
+            await axios.delete(`${API}/audit/cleanup`, {
                 withCredentials: true
             });
             fetchAuditLogs();

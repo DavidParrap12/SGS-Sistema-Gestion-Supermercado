@@ -1,10 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest, verifyTokenRequest } from "../api/auth";
+import { loginRequest, verifyTokenRequest, API } from "../api/auth";
 import Cookies from "js-cookie";
 import axios from 'axios';
-
-// Update the API base URL
-const API = 'http://localhost:3005/api';
 
 export const AuthContext = createContext();
 
@@ -25,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     // Función de registro (solo para admins)
     const signup = async (registerData) => {
         try {
-            const response = await axios.post('http://localhost:3005/api/auth/admin/register', registerData, {
+            const response = await axios.post(`${API}/auth/admin/register`, registerData, {
                 withCredentials: true
             });
             
@@ -40,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     // Función de inicio de sesión
     const signin = async (loginData) => {
         try {
-            const response = await axios.post('http://localhost:3005/api/auth/login', loginData, {
+            const response = await axios.post(`${API}/auth/login`, loginData, {
                 withCredentials: true
             });
             
@@ -57,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     // Función de cierre de sesión
     const logout = async () => {
         try {
-            await axios.post('http://localhost:3005/api/auth/logout', null, {
+            await axios.post(`${API}/auth/logout`, null, {
                 withCredentials: true
             });
             setUser(null);
